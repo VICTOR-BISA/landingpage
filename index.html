@@ -74,7 +74,7 @@
             <input type="tel" name="telefone" id="telefone" placeholder="Seu WhatsApp" required>
             <button type="submit">QUERO PROVAR</button>
         </form>
-        
+
         <p id="mensagem" style="display:none; color: green;">Cadastro realizado com sucesso!</p>
     </div>
 
@@ -91,7 +91,7 @@
             formData.append("email", email);
             formData.append("telefone", telefone);
 
-            fetch("https://script.google.com/macros/s/AKfycbw8bBLMP-_AMJ0kvgvKBOFoF39fAhpHiR47jcfxanWhr6Thz4T5VCSe9IEwyOet9Z3w-A/exec", {
+            fetch("https://script.google.com/macros/s/AKfycbysFbrQ8yzLTZTey7TnhneBSCSfne7kiiDV2lqya1v2fC1iSEiy5GMeJwpw2BCCp03NRg/exec", {
                 method: "POST",
                 body: formData
             })
