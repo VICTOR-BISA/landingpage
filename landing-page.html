@@ -72,14 +72,16 @@
             <input type="text" name="nome" id="nome" placeholder="Seu Nome" required>
             <input type="email" name="email" id="email" placeholder="Seu E-mail" required>
             <input type="tel" name="telefone" id="telefone" placeholder="Seu WhatsApp" required>
-            <button type="button" onclick="enviarFormulario()">QUERO PROVAR</button>
+            <button type="submit">QUERO PROVAR</button>
         </form>
         
         <p id="mensagem" style="display:none; color: green;">Cadastro realizado com sucesso!</p>
     </div>
 
     <script>
-        function enviarFormulario() {
+        document.getElementById("leadForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evita o recarregamento da página
+
             var nome = document.getElementById("nome").value;
             var email = document.getElementById("email").value;
             var telefone = document.getElementById("telefone").value;
@@ -89,8 +91,7 @@
             formData.append("email", email);
             formData.append("telefone", telefone);
 
-            fetch("https://script.google.com/macros/s/AKfycbw8bBLMP-_AMJ0kvgvKBOFoF39fAhpHiR47jcfxanWhr6Thz4T5VCSe9IEwyOet9Z3w-A/exec
-", {
+            fetch("https://script.google.com/macros/s/AKfycbw8bBLMP-_AMJ0kvgvKBOFoF39fAhpHiR47jcfxanWhr6Thz4T5VCSe9IEwyOet9Z3w-A/exec", {
                 method: "POST",
                 body: formData
             })
@@ -100,7 +101,7 @@
                 document.getElementById("leadForm").reset();
             })
             .catch(error => alert("Erro ao enviar. Tente novamente."));
-        }
+        });
     </script>
 
 </body>
