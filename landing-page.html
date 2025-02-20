@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Interessados</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #3E6026;
+            color: #F5E1B9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            background: #F5E1B9;
+            color: #3E6026;
+            max-width: 400px;
+            width: 90%;
+            padding: 30px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #3E6026;
+            font-weight: bold;
+        }
+        p {
+            font-size: 16px;
+            color: #3E6026;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #3E6026;
+            font-size: 16px;
+            background-color: #fff;
+            color: #3E6026;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #3E6026;
+            color: #F5E1B9;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #2C471A;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>LISTA DE INTERESSADOS</h1>
+        <p>O primeiro macarrão sustentável do mercado está chegando! Entre para a lista e seja um dos primeiros a experimentar.</p>
+        
+        <form id="leadForm">
+            <input type="text" name="nome" id="nome" placeholder="Seu Nome" required>
+            <input type="email" name="email" id="email" placeholder="Seu E-mail" required>
+            <input type="tel" name="telefone" id="telefone" placeholder="Seu WhatsApp" required>
+            <button type="button" onclick="enviarFormulario()">QUERO PROVAR</button>
+        </form>
+        
+        <p id="mensagem" style="display:none; color: green;">Cadastro realizado com sucesso!</p>
+    </div>
+
+    <script>
+        function enviarFormulario() {
+            var nome = document.getElementById("nome").value;
+            var email = document.getElementById("email").value;
+            var telefone = document.getElementById("telefone").value;
+
+            var formData = new FormData();
+            formData.append("nome", nome);
+            formData.append("email", email);
+            formData.append("telefone", telefone);
+
+            fetch("https://script.google.com/macros/s/AKfycbw8bBLMP-_AMJ0kvgvKBOFoF39fAhpHiR47jcfxanWhr6Thz4T5VCSe9IEwyOet9Z3w-A/exec
+", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("mensagem").style.display = "block";
+                document.getElementById("leadForm").reset();
+            })
+            .catch(error => alert("Erro ao enviar. Tente novamente."));
+        }
+    </script>
+
+</body>
+</html>
